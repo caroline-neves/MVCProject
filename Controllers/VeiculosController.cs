@@ -1,15 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using MVCProject.Models;
 
 namespace MVCProject.Controllers
 {
+    [Authorize]
     public class VeiculosController : Controller
     {
         private readonly AppDbContext _context;
@@ -107,6 +104,30 @@ namespace MVCProject.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Relatorio(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var veiculo = await _context.Veiculos.FindAsync(id);
+
+            if (veiculo == null)
+                return NotFound();
+
+            var consumos = await _context.Consumos
+                .Where(c => c.VeiculoId == id)
+                .OrderByDescending(c=>c.Data)
+                .ToListAsync();
+
+            decimal total = consumos.Sum(c => c.Valor);
+
+            ViewBag.Veiculo = veiculo;
+            ViewBag.Total = total;
+
+
+            return View(consumos);
         }
     }
 }

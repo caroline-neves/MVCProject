@@ -1,14 +1,13 @@
 ﻿@model IEnumerable<MVCProject.Models.Consumo>
 
 @{
-    ViewData["Title"] = "Relatorio";
+    ViewData["Title"] = "Index";
 }
 
-<h1>Relatório do Veículo : @ViewBag.Veiculo.Nome</h1>
-<h3>Valor total: @ViewBag.Total</h3>
+<h1>Consumos</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create"class="btn btn-success">Adicionar novo Consumo</a>
 </p>
 <table class="table">
     <thead>
@@ -56,9 +55,9 @@
                 @Html.DisplayFor(modelItem => item.Veiculo.Nome)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class=" btn btn-primary">Visualizar</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Apagar</a>
             </td>
         </tr>
 }

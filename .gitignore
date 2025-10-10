@@ -1,0 +1,32 @@
+﻿# Visual Studio / .NET
+.vs/
+bin/
+obj/
+[Bb]uild/
+artifacts/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.lock.json
+
+# ASP.NET/IIS
+.vscode/
+*.local.json
+Generated\ Files/
+App_Data/
+
+# Rider/Resharper (se usar)
+.idea/
+*.DotSettings.user
+
+# Logs
+*.log
+
+# Sistema
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.tmp
+~*
